@@ -8,6 +8,18 @@ function Def (html) {
                 <link rel="stylesheet" href="style.css"/>
             </head>
             <body>
+                <nav>
+                    <ul></ul>
+                        <li>
+                            <a href='/'>Home</a>
+                        </li>
+                        <li>
+                            <a href='/places'>Places</a>
+                        </li>
+                        <li>
+                            <a href='/places/new'>Add Places</a>
+                        </li>
+                </nav>
                 {html.children}
             </body>
         </html>
