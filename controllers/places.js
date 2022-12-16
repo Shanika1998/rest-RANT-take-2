@@ -10,7 +10,7 @@ router.get('/:id', (req, res) => {
     res.render('error404')
   }
   else {
-    res.render('places/show', { place: places[id] })
+    res.render('places/show', { place: places[id],id })
 
   }
 })
@@ -18,6 +18,20 @@ router.get('/:id', (req, res) => {
 router.get('/new', (req, res) => {
     res.render('places/new')
   })
+router.delete('/:id', (req, res) => {
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
+      res.render('error404')
+    }
+    else if (!places[id]) {
+      res.render('error404')
+    }
+    else {
+      places.splice(id, 1)
+      res.redirect('/places')
+    }
+  })
+  
   
 router.get('/', (req, res) => {
     let places = [{
@@ -25,13 +39,13 @@ router.get('/', (req, res) => {
         city: 'Burlington',
         state: 'MA',
         cuisines: 'Health Drinks, American',
-        pic: 'images/pressed_cafe.jpg'
+        pic: '../images/pressed_cafe.jpg'
       }, {
         name: 'Footprints Cafe',
         city: 'Brooklyn',
         state: 'NY',
         cuisines: 'Jamaican',
-        pic: 'images/footprints-cafe.jpg'
+        pic: '../images/footprints-cafe.jpg'
       }]
       
     res.render('places/index', { places })
